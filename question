@@ -1,0 +1,12 @@
+select 
+    transaction_date,
+    (sum(transaction_amount)/count(distinct transaction_date)) AS rolling_avg
+from (
+    select 
+        date(transaction_time) as transaction_date,
+        transaction_amount
+    from 
+        transactions
+    where 
+    	  date(transaction_time) BETWEEN '2021-01-29' AND '2021-01-31'
+)
